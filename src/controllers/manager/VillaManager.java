@@ -1,7 +1,7 @@
 package controllers.manager;
 
-import commons.ReaderAndWriterFile;
-import models.InputData;
+import commons.FileUtils;
+import commons.regex.InputData;
 import models.Villa;
 
 import java.util.ArrayList;
@@ -14,8 +14,9 @@ public class VillaManager extends InputData {
 
     public Villa addNewVilla(){
         Villa villa = new Villa(inputIdVilla(),inputServiceName(),inputAreaUsed(),inputRentalCost(),inputMaxNumberPeople(),inputRentalType(),inputStandard(),inputOtherAmenities(),inputPoolArea(),inputNumberOfFloors());
-        ReaderAndWriterFile readerAndWriterFile = new ReaderAndWriterFile();
-        readerAndWriterFile.writer(villa, "F:\\Furama_Module_2\\src\\data\\villa.csv");
+        FileUtils fileUtils = new FileUtils();
+        fileUtils.setFullPathFile("villa");
+        FileUtils.writeFile(villa.getInfo());
         return villa;
     }
 
@@ -27,17 +28,22 @@ public class VillaManager extends InputData {
 
     public List<Villa> getVillaToFile(){
         villaList = new ArrayList<>();
-        ReaderAndWriterFile readerFile =new ReaderAndWriterFile();
-        List<String[]> listData = readerFile.Reader("F:\\Furama_Module_2\\src\\data\\villa.csv");
-        for (String[] data:listData) {
+        FileUtils fileUtils = new FileUtils();
+        fileUtils.setFullPathFile("villa");
+        List<String> listInfo = fileUtils.readFile();
+        for (String info:listInfo) {
+            String[] data =info.split(",");
             addNewVilla(data);
         }
         return villaList;
     }
 
     public void showVilla(){
+        int i =1;
         for (Villa villa:getVillaToFile()) {
+            System.out.println(i+". ");
             System.out.println(villa);
+            i++;
         }
     }
 }

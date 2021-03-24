@@ -38,23 +38,20 @@ public class House extends Services {
 
     @Override
     public String toString() {
-        return super.getId() + ", " + super.getNameService() + ", " + super.getAreaUsed() + ", " +
-                super.getRentalCosts() + ", " + super.getMaxNumberOfPeople() + ", " + super.getRentalType() + ", " +
-                getStandardOfRoom() + ", " + getOtherAmenities() + ", " + getNumberOfFloors();
+        return "House{" +
+                "standardOfRoom='" + standardOfRoom + '\'' +
+                ", otherAmenities='" + otherAmenities + '\'' +
+                ", numberOfFloors=" + numberOfFloors +
+                '}'+super.toString();
     }
 
     @Override
     public void showInfo() {
-        System.out.println("House{" +
-                "id='" + super.getId() + '\'' +
-                ", nameService='" + super.getNameService() + '\'' +
-                ", areaUsed=" + super.getAreaUsed() +
-                ", rentalCosts=" + super.getRentalCosts() +
-                ", maxNumberOfPeople=" + super.getMaxNumberOfPeople() +
-                ", rentalType='" + super.getRentalType() + '\'' +
-                "standardOfTheRoom='" + standardOfRoom + '\'' +
-                ", otherAmenities='" + otherAmenities + '\'' +
-                ", numberOfFloors=" + numberOfFloors +
-                '}');
+        System.out.println(this.toString());
+    }
+
+    public String[] getInfo(){
+        String[] info = {super.getId(),super.getNameService(), String.valueOf(super.getAreaUsed()), String.valueOf(super.getRentalCosts()), String.valueOf(super.getMaxNumberOfPeople()),super.getRentalType(),getStandardOfRoom(),getOtherAmenities(), String.valueOf(getNumberOfFloors())};
+        return info;
     }
 }

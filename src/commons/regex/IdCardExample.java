@@ -5,18 +5,18 @@ import commons.InvalidException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NameExample {
+public class IdCardExample {
     private static Pattern pattern;
     private Matcher matcher;
 
-    private static final String NAME_REGEX="^[A-Z]+[a-z]+$";
+    private static final String ID_REGEX="^[\\d]{3} [\\d]{3} [\\d]{3}$";
 
-    public NameExample(){
-        pattern=Pattern.compile(NAME_REGEX);
+    public IdCardExample(){
+        pattern=Pattern.compile(ID_REGEX);
     }
 
-    public void validate (String name) throws InvalidException {
-        matcher=pattern.matcher(name);
+    public void validate(String regex) throws InvalidException {
+        matcher=pattern.matcher(regex);
         if (!matcher.matches()){
             throw new InvalidException("Invalid!");
         }

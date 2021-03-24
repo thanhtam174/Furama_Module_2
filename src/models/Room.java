@@ -18,20 +18,18 @@ public class Room extends Services{
 
     @Override
     public String toString() {
-        return super.getId() + ", " + super.getNameService() + ", " + super.getAreaUsed() + ", " + super.getRentalCosts() + ", " +
-                super.getMaxNumberOfPeople() + ", " + super.getRentalType() + ", " + getFreeService();
+        return "Room{" +
+                "freeService='" + freeService + '\'' +
+                '}' + super.toString();
     }
 
     @Override
     public void showInfo() {
-        System.out.println("Room{" +
-                "id='" + super.getId() + '\'' +
-                ", nameService='" + super.getNameService() + '\'' +
-                ", areaUsed=" + super.getAreaUsed() +
-                ", rentalCosts=" + super.getRentalCosts() +
-                ", maxNumberOfPeople=" + super.getMaxNumberOfPeople() +
-                ", rentalType='" + super.getRentalType() + '\'' +
-                "freeService='" + freeService + '\'' +
-                '}');
+        System.out.println(this.toString());
+    }
+
+    public String [] getInfo(){
+        String[] info = {super.getId(),super.getNameService(), String.valueOf(super.getAreaUsed()), String.valueOf(super.getRentalCosts()), String.valueOf(super.getMaxNumberOfPeople()),super.getRentalType(),getFreeService()};
+        return info;
     }
 }

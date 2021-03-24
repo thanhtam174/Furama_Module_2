@@ -48,24 +48,22 @@ public class Villa extends Services {
 
     @Override
     public String toString() {
-        return super.getId() + ", " + super.getNameService() + ", " + super.getAreaUsed() + ", " + super.getRentalCosts() + ", " +
-                super.getMaxNumberOfPeople() + ", " + super.getRentalType() + ", " + getStandardOfRoom() + ", " +
-                getOtherAmenities() + ", " + getPoolArea() + ", " + getNumberOfFloors();
+        return "Villa{" +
+                "standardOfRoom='" + standardOfRoom + '\'' +
+                ", otherAmenities='" + otherAmenities + '\'' +
+                ", poolArea=" + poolArea +
+                ", numberOfFloors=" + numberOfFloors +
+                '}'+super.toString();
     }
 
     @Override
     public void showInfo() {
-        System.out.println("Villa{" +
-                "id='" + super.getId() + '\'' +
-                ", nameService='" + super.getNameService() + '\'' +
-                ", areaUsed=" + super.getAreaUsed() +
-                ", rentalCosts=" + super.getRentalCosts() +
-                ", maxNumberOfPeople=" + super.getMaxNumberOfPeople() +
-                ", rentalType='" + super.getRentalType() + '\'' +
-                "standardOfTheRoom='" + standardOfRoom + '\'' +
-                ", otherAmenities='" + otherAmenities + '\'' +
-                ", poolArea=" + poolArea +
-                ", numberOfFloors=" + numberOfFloors +
-                '}');
+        System.out.println(this.toString());
+    }
+
+    public String[] getInfo(){
+        String[] info ={super.getId(),super.getNameService(), String.valueOf(super.getAreaUsed()),
+                String.valueOf(super.getRentalCosts()), String.valueOf(super.getMaxNumberOfPeople()),super.getRentalType(),getStandardOfRoom(),getOtherAmenities(), String.valueOf(getPoolArea()), String.valueOf(getNumberOfFloors())};
+        return info;
     }
 }

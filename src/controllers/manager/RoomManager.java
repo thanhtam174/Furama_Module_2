@@ -1,7 +1,7 @@
 package controllers.manager;
 
-import commons.ReaderAndWriterFile;
-import models.InputData;
+import commons.FileUtils;
+import commons.regex.InputData;
 import models.Room;
 
 import java.util.ArrayList;
@@ -12,8 +12,9 @@ public class RoomManager extends InputData {
 
     public Room addNewRoom() {
         Room room = new Room(inputIdRoom(), inputServiceName(), inputAreaUsed(), inputRentalCost(), inputMaxNumberPeople(), inputRentalType(), inputFreeService());
-        ReaderAndWriterFile readerAndWriterFile = new ReaderAndWriterFile();
-        readerAndWriterFile.writer(room,"F:\\Furama_Module_2\\src\\data\\room.csv");
+        FileUtils fileUtils = new FileUtils();
+        fileUtils.setFullPathFile("room");
+        fileUtils.writeFile(room.getInfo());
         return room;
     }
 
@@ -25,11 +26,22 @@ public class RoomManager extends InputData {
 
     public List<Room> getRoomToFile(){
         roomList = new ArrayList<>();
-        ReaderAndWriterFile readerFile =new ReaderAndWriterFile();
-        List<String[]> listData = readerFile.Reader("F:\\Furama_Module_2\\src\\data\\villa.csv");
-        for (String[] data:listData) {
+        FileUtils fileUtils = new FileUtils();
+        fileUtils.setFullPathFile("room");
+        List<String> listInfo = FileUtils.readFile();
+        for (String info:listInfo) {
+            String[] data = info.split(",");
             addNewRoom(data);
         }
         return roomList;
+    }
+
+    public void showRoom(){
+        int i =1;
+        for (Room room:getRoomToFile()) {
+            System.out.println(i+". ");
+            System.out.println(room);
+            i++;
+        }
     }
 }

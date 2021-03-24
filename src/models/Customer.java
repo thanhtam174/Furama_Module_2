@@ -1,7 +1,7 @@
 package models;
 
-public class Customer {
-    private String name;
+public class Customer implements Comparable<Customer>{
+    private String fullName;
     private String dateOfBirth;
     private String gender;
     private String identityCard;
@@ -11,8 +11,8 @@ public class Customer {
     private String address;
     private Services services;
 
-    public Customer(String name, String dateOfBirth, String gender, String identityCard, String phoneNumber, String email, String typeCustomer, String address) {
-        this.name = name;
+    public Customer(String fullName, String dateOfBirth, String gender, String identityCard, String phoneNumber, String email, String typeCustomer, String address) {
+        this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.identityCard = identityCard;
@@ -23,12 +23,12 @@ public class Customer {
         this.services = null;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getDateOfBirth() {
@@ -98,7 +98,7 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "name='" + name + '\'' +
+                "name='" + fullName + '\'' +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", sex='" + gender + '\'' +
                 ", identityCard='" + identityCard + '\'' +
@@ -111,6 +111,22 @@ public class Customer {
     }
 
     public void showInfo(){
-        System.out.println(this);
+        System.out.println(this.toString());
+    }
+
+    public String[] getInfo(){
+        String[] info={fullName,dateOfBirth,gender,identityCard,phoneNumber,email,typeCustomer,address};
+        return info;
+    }
+
+    @Override
+    public int compareTo(Customer o) {
+        int result = this.fullName.compareTo(o.fullName);
+        if (result == 0){
+            int yearCustomerFirst = Integer.parseInt(this.dateOfBirth.split("/")[2]);
+            int yearCustomerSecond = Integer.parseInt(o.dateOfBirth.split("/")[2]);
+            result = yearCustomerFirst - yearCustomerSecond;
+        }
+        return result;
     }
 }

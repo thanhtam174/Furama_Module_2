@@ -1,7 +1,6 @@
-package models;
+package commons.regex;
 
 import commons.InvalidException;
-import commons.regex.*;
 
 import java.util.Scanner;
 
@@ -13,8 +12,8 @@ public abstract class InputData {
             try {
                 System.out.print("Enter id: ");
                 String id = scanner.nextLine();
-                NameExample nameExample = new NameExample();
-                nameExample.validate(id);
+                IdVillaExample idVillaExample = new IdVillaExample();
+                idVillaExample.validate(id);
                 return id;
             } catch (InvalidException e) {
                 System.out.println(e.getMessage());
@@ -27,8 +26,8 @@ public abstract class InputData {
             try {
                 System.out.print("Enter id: ");
                 String id = scanner.nextLine();
-                NameExample nameExample = new NameExample();
-                nameExample.validate(id);
+                IdHouseExample idHouseExample = new IdHouseExample();
+                idHouseExample.validate(id);
                 return id;
             } catch (InvalidException e) {
                 System.out.println(e.getMessage());
@@ -41,8 +40,8 @@ public abstract class InputData {
             try {
                 System.out.print("Enter id: ");
                 String id = scanner.nextLine();
-                NameExample nameExample = new NameExample();
-                nameExample.validate(id);
+                IdRoomExample idRoomExample = new IdRoomExample();
+                idRoomExample.validate(id);
                 return id;
             } catch (InvalidException e) {
                 System.out.println(e.getMessage());
@@ -55,8 +54,8 @@ public abstract class InputData {
             try {
                 System.out.print("Enter sevice's name: ");
                 String name = scanner.nextLine();
-                NameExample nameExample = new NameExample();
-                nameExample.validate(name);
+                NameServiceExample nameServiceExample = new NameServiceExample();
+                nameServiceExample.validate(name);
                 return name;
             } catch (InvalidException e) {
                 System.out.println(e.getMessage());
@@ -117,8 +116,8 @@ public abstract class InputData {
             try {
                 System.out.print("Enter rental type: ");
                 String rentalType = scanner.nextLine();
-                NameExample nameExample = new NameExample();
-                nameExample.validate(rentalType);
+                NameServiceExample nameServiceExample = new NameServiceExample();
+                nameServiceExample.validate(rentalType);
                 return rentalType;
             } catch (InvalidException e) {
                 System.out.println(e.getMessage());
@@ -131,8 +130,8 @@ public abstract class InputData {
             try {
                 System.out.print("Enter standard of room: ");
                 String standard = scanner.nextLine();
-                NameExample nameExample = new NameExample();
-                nameExample.validate(standard);
+                NameServiceExample nameServiceExample = new NameServiceExample();
+                nameServiceExample.validate(standard);
                 return standard;
             } catch (InvalidException e) {
                 System.out.println(e.getMessage());
@@ -214,15 +213,31 @@ public abstract class InputData {
     }
 
     public String inputGender() {
-        System.out.print("Enter gender: ");
-        String gender = scanner.nextLine();
-        return gender;
+        while (true) {
+            try {
+                System.out.print("Enter gender: ");
+                String gender = scanner.nextLine();
+                GenderExample genderExample = new GenderExample();
+                gender = genderExample.validate(gender);
+                return gender;
+            } catch (InvalidException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public String inputIdentityCard() {
-        System.out.print("Enter identity card number: ");
-        String cardNumber = scanner.nextLine();
-        return cardNumber;
+        while (true) {
+            try {
+                System.out.print("Enter identity card number: ");
+                String cardNumber = scanner.nextLine();
+                IdCardExample idExample = new IdCardExample();
+                idExample.validate(cardNumber);
+                return cardNumber;
+            } catch (InvalidException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public String inputPhoneNumber(){
@@ -232,9 +247,17 @@ public abstract class InputData {
     }
 
     public String inputEmail(){
-        System.out.print("Enter email: ");
-        String email = scanner.nextLine();
-        return email;
+        while (true) {
+            try {
+                System.out.print("Enter email: ");
+                String email = scanner.nextLine();
+                EmailExample emailExample = new EmailExample();
+                emailExample.validate(email);
+                return email;
+            } catch (InvalidException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public String inputTypeCustomer(){

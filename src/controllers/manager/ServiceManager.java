@@ -4,8 +4,9 @@ import models.House;
 import models.Room;
 import models.Villa;
 
-import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class ServiceManager {
     Scanner scanner = new Scanner(System.in);
@@ -66,27 +67,26 @@ public class ServiceManager {
             System.out.println("8. Exit");
             System.out.print("Enter your choose: ");
             choose=scanner.nextInt();
+            int i;
             switch (choose){
                 case 1:
                     System.out.println("---------VILLA LIST---------");
-                    List<Villa> listVilla = villaManager.getVillaToFile();
-                    for (Villa villa : villaManager.getVillaToFile()){
-                        villa.showInfo();
-                    }
+                    villaManager.showVilla();
                     break;
                 case 2:
                     System.out.println("----------HOUSE LIST---------");
-                    for (House house:houseManager.getHouseToFile()) {
-                        house.showInfo();
-                    }
+                    houseManager.showHouse();
                     break;
                 case 3:
                     System.out.println("----------ROOM LIST---------");
-                    for (Room room:roomManager.getRoomToFile()) {
-                        room.showInfo();
-                    }
+                    roomManager.showRoom();
                     break;
             }
         }while (choose != 8);
+    }
+
+    public void showServiceNotDup(){
+        Set<String> nameSet = new TreeSet<>();
+
     }
 }

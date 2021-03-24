@@ -1,8 +1,8 @@
 package controllers.manager;
 
-import commons.ReaderAndWriterFile;
+import commons.FileUtils;
 import models.House;
-import models.InputData;
+import commons.regex.InputData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,9 @@ public class HouseManager extends InputData {
 
     public House addNewHouse(){
         House house =new House(inputIdHouse(),inputServiceName(),inputAreaUsed(),inputRentalCost(),inputMaxNumberPeople(),inputRentalType(),inputStandard(),inputOtherAmenities(),inputNumberOfFloors());
-        ReaderAndWriterFile readerAndWriterFile = new ReaderAndWriterFile();
-        readerAndWriterFile.writer(house,"F:\\Furama_Module_2\\src\\data\\house.csv");
+        FileUtils fileUtils = new FileUtils();
+        fileUtils.setFullPathFile("house");
+        fileUtils.writeFile(house.getInfo());
         return house;
     }
 
@@ -25,11 +26,22 @@ public class HouseManager extends InputData {
 
     public List<House> getHouseToFile(){
         houseList = new ArrayList<>();
-        ReaderAndWriterFile readerFile =new ReaderAndWriterFile();
-        List<String[]> listData = readerFile.Reader("F:\\Furama_Module_2\\src\\data\\villa.csv");
-        for (String[] data:listData) {
+        FileUtils fileUtils = new FileUtils();
+        fileUtils.setFullPathFile("house");
+        List<String> listInfo = FileUtils.readFile();
+        for (String info:listInfo) {
+            String[] data = info.split(",");
             addNewHouse(data);
         }
         return houseList;
+    }
+
+    public void showHouse(){
+        int i =1;
+        for (House house:getHouseToFile()) {
+            System.out.println(i+". ");
+            System.out.println(house);
+            i++;
+        }
     }
 }

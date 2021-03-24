@@ -1,6 +1,6 @@
 package models;
 
-public class Services {
+public abstract class Services {
     private String id;
     private String nameService;
     private double areaUsed;
@@ -65,7 +65,17 @@ public class Services {
         this.rentalType = rentalType;
     }
 
-    public void showInfo(){
-    }
+    public abstract void showInfo();
 
+    @Override
+    public String toString() {
+        return "Services{" +
+                "id='" + id + '\'' +
+                ", nameService='" + nameService + '\'' +
+                ", areaUsed=" + areaUsed +
+                ", rentalCosts=" + rentalCosts +
+                ", maxNumberOfPeople=" + maxNumberOfPeople +
+                ", rentalType='" + rentalType + '\'' +
+                '}';
+    }
 }

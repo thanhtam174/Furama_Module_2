@@ -2,8 +2,7 @@ package commons.regex;
 
 import commons.InvalidException;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.Year;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,20 +18,15 @@ public class DateExample {
 
     public boolean isLessThan18(String date){
         String dateArr[]=date.split("/");
-        if (LocalDateTime.now().getYear()- Integer.parseInt(dateArr[2]) <= 18) {
-            if (LocalDateTime.now().getMonthValue() < Integer.parseInt(dateArr[1])) {
-                if (LocalDateTime.now().getDayOfMonth() < Integer.parseInt(dateArr[0])) {
-                    return true;
-                }
-            }
+        if(Year.now().getValue() - Integer.parseInt(dateArr[2]) < 18 || Integer.parseInt(dateArr[2]) < 1900){
+            return true;
         }
         return false;
     }
 
     public void validate (String date) throws InvalidException {
         matcher=pattern.matcher(date);
-        boolean check = isLessThan18(date);
-        if (!matcher.matches() && check){
+        if (!matcher.matches() || isLessThan18(date)){
             throw new InvalidException("Invalid!");
         }
     }

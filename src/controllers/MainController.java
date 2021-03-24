@@ -1,12 +1,16 @@
 package controllers;
 
+import controllers.manager.BookingManager;
 import controllers.manager.CustomerManager;
 import controllers.manager.ServiceManager;
 
 import java.util.Scanner;
 
 public class MainController {
-    public static void displayMainMenu(ServiceManager serviceManager, CustomerManager customerManager){
+    private static ServiceManager serviceManager =new ServiceManager();
+    private static CustomerManager customerManager=new CustomerManager();
+    private static BookingManager bookingManager=new BookingManager();
+    public static void displayMainMenu(){
         int chosse;
         Scanner scanner=new Scanner(System.in);
         do {
@@ -30,13 +34,18 @@ public class MainController {
                     break;
                 case 3:
                     customerManager.addNewCustomer();
+                    break;
+                case 4:
+                    customerManager.showInformationCustomer();
+                    break;
+                case 5:
+                    bookingManager.addNewBooking();
+                    break;
             }
         }while (chosse!=7);
     }
 
     public static void main(String[] args) {
-        ServiceManager serviceManager =new ServiceManager();
-        CustomerManager customerManager=new CustomerManager();
-        displayMainMenu(serviceManager,customerManager);
+        displayMainMenu();
     }
 }
